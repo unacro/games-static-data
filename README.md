@@ -8,10 +8,8 @@ Edit `config/_default/module.toml`:
 
 ```toml
 [[imports]]
-
 disable = false
-
-path = "github.com/unacro/hugo-shortcodes"
+path = "github.com/unacro/games-static-database"
 ```
 
 Then run `hugo server` to download automatically.
