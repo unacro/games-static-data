@@ -36,4 +36,4 @@ https://cdn.jsdelivr.net/gh/unacro/games-static-database@main/data/games/bucksho
 ## Todo List
 
 - [ ] 编写脚本利用 [NocoDB API](https://data-apis-v2.nocodb.com/) 实现导入（本仓库 JSON → NocoDB）/ 导出（NocoDB → 本仓库数据）
-- [ ] 编写 GitHub Actions 的 workflow 实现自动化（手动触发，自动化指一键完成）
+- [ ] 编写 GitHub Actions 的 workflow 实现自动化（仍由手动触发，自动化指可一键完成）
