@@ -1,3 +1,3 @@
 module github.com/unacro/games-static-database
 
-go 1.22.6
+go 1.23.0
