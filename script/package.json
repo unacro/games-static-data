@@ -1,0 +1,16 @@
+{
+  "name": "games-static-database-script",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run ./src/index.ts",
+    "upload": "NODE_ENV=production ACTION=upload bun run ./src/index.ts",
+    "download": "NODE_ENV=production ACTION=download bun run ./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

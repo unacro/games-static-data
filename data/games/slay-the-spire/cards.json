@@ -1,0 +1,191 @@
+[
+    {
+        "kind": "Ironclad",
+        "rarity": "Common",
+        "type": "Skill",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "坚毅",
+        "effect": "获得 7(9)+ 点格挡。消耗一张随机(指定)+手牌。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Rare",
+        "type": "Skill",
+        "cost": 2,
+        "upgraded_cost": 2,
+        "name": "岿然不动",
+        "effect": "消耗 30(40)+ 点格挡。消耗。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Common",
+        "type": "Attack",
+        "cost": 1,
+        "upgraded_cost": 0,
+        "name": "全身撞击",
+        "effect": "造成你当前格挡值的伤害。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Uncommon",
+        "type": "Skill",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "重振精神",
+        "effect": "消耗手牌中所有非攻击牌，每张获得 5(7)+ 点格挡。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Uncommon",
+        "type": "Skill",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "硬撑",
+        "effect": "增加 2 张伤口到你的手牌。获得 15(20)+ 点格挡。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Uncommon",
+        "type": "Power",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "无惧疼痛",
+        "effect": "每当有一张牌被消耗时，获得 3(4)+ 点格挡。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Common",
+        "type": "Skill",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "耸肩无视",
+        "effect": "获得 8(11)+ 点格挡。抽 1 张牌。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Uncommon",
+        "type": "Skill",
+        "cost": 2,
+        "upgraded_cost": 1,
+        "name": "巩固",
+        "effect": "将你当前的格挡翻倍。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Rare",
+        "type": "Attack",
+        "cost": 2,
+        "upgraded_cost": 2,
+        "name": "死亡收割",
+        "effect": "对所有敌人造成 4(5)+ 点伤害。未被格挡的伤害将回复你的生命。消耗。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Common",
+        "type": "Attack",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "飞剑回旋镖",
+        "effect": "随机对敌人造成 3 点伤害 3(4)+ 次。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Rare",
+        "type": "Skill",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "突破极限",
+        "effect": "将你的力量翻倍。消耗(不消耗)+。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Common",
+        "type": "Skill",
+        "cost": 0,
+        "upgraded_cost": 0,
+        "name": "活动肌肉",
+        "effect": "获得 2(4)+ 点力量。你的回合结束时，失去 2(4)+ 点力量。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Uncommon",
+        "type": "Skill",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "观察弱点",
+        "effect": "如果一名敌人的意图是攻击，你获得 3(4)+ 点力量。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Rare",
+        "type": "Power",
+        "cost": 3,
+        "upgraded_cost": 2,
+        "name": "壁垒",
+        "effect": "格挡不再在你的回合开始时消失。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Uncommon",
+        "type": "Power",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "燃烧",
+        "effect": "获得 2(3)+ 点力量。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Uncommon",
+        "type": "Attack",
+        "cost": -10,
+        "upgraded_cost": -10,
+        "name": "旋风斩",
+        "effect": "对所有敌人造成 5(8)+ 点伤害 X 次。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Uncommon",
+        "type": "Power",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "撕裂",
+        "effect": "每当你从一张牌中失去生命时，获得 1(2)+ 点力量。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Rare",
+        "type": "Power",
+        "cost": 3,
+        "upgraded_cost": 3,
+        "name": "恶魔形态",
+        "effect": "在每回合开始时获得 2(3)+ 点力量。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Common",
+        "type": "Attack",
+        "cost": 2,
+        "upgraded_cost": 2,
+        "name": "重刃",
+        "effect": "造成 14 点伤害。力量在重刃上发挥 3(5)+ 倍效果。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Rare",
+        "type": "Power",
+        "cost": 0,
+        "upgraded_cost": 0,
+        "name": "残暴",
+        "effect": "(固有。)+在你的回合开始时，你失去 1 点生命，抽 1 张牌。"
+    },
+    {
+        "kind": "Ironclad",
+        "rarity": "Uncommon",
+        "type": "Power",
+        "cost": 1,
+        "upgraded_cost": 1,
+        "name": "自燃",
+        "effect": "在你的回合结束时，你失去 1 点生命，对所有敌人造成 5(7)+ 点伤害。"
+    }
+]

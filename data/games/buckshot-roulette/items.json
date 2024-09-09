@@ -1,0 +1,52 @@
+[
+    {
+        "name": "手锯",
+        "effect": "霰弹枪造成 2 点伤害。",
+        "mode": "all"
+    },
+    {
+        "name": "香烟",
+        "effect": "消除压力。恢复 1 点生命值。",
+        "mode": "all"
+    },
+    {
+        "name": "啤酒",
+        "effect": "弹出霰弹枪膛内当前的子弹。",
+        "mode": "all"
+    },
+    {
+        "name": "手铐",
+        "effect": "庄家下一回合无法行动。",
+        "mode": "all"
+    },
+    {
+        "name": "放大镜",
+        "effect": "检查弹膛中当前的子弹。",
+        "mode": "all"
+    },
+    {
+        "name": "逆转器",
+        "effect": "切换弹膛内当前子弹为实弹或空包弹。",
+        "mode": "double_or_nothing"
+    },
+    {
+        "name": "一次性手机",
+        "effect": "一个神秘的声音让你窥探未来。",
+        "mode": "double_or_nothing"
+    },
+    {
+        "name": "过期药品",
+        "effect": "有 50% 的几率恢复 2 点生命值。否则将损失 1 点生命值。",
+        "mode": "double_or_nothing"
+    },
+    {
+        "name": "肾上腺素",
+        "effect": "偷窃一件物品并立即使用。",
+        "mode": "double_or_nothing"
+    },
+    {
+        "name": "遥控器",
+        "effect": "[已删除：沃尔塔标准电子的专有信息]",
+        "mode": "multiplayer"
+    }
+]

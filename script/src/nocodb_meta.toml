@@ -1,0 +1,28 @@
+[inscryption]
+name = "邪恶冥刻"
+baseId = "p05c0t6p3oxsjid"
+tableIdMap = { Cards = "mcy9yokm0xthz5a" }
+
+[buckshot-roulette]
+name = "恶魔轮盘"
+baseId = "pv50v1q38cwe1c4"
+tableIdMap = { Items = "mr0dsvn4tao46fk" }
+
+[cult-of-the-lamb]
+name = "咩咩启示录"
+baseId = "pthmkiqeuaqjhua"
+tableIdMap = { Relics = "mouttlba7kfyhtx" }
+
+[black-myth-wukong]
+name = "黑神话：悟空"
+baseId = "p4jqriduck3vxzo"
+tableIdMap = { "精魄" = "mw00cqdrwcyhfv7", "珍玩" = "msb6anebx04qt2e" }
+
+[slay-the-spire]
+name = "杀戮尖塔"
+baseId = "p1s2eitlyri0xb4"
+tableIdMap = { Cards = "mcaapqi9bm7v2sg" }
+
+[faster-than-light]
+name = "超越光速"
+baseId = "pyphma7rq6xr8hz"
