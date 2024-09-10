@@ -39,21 +39,29 @@ bun run upload
 > ~~文档是不清不楚的，屎山是可能十年历史起步的。~~
 
 [Steam 官方的成就 API](https://partner.steamgames.com/doc/webapi/ISteamUserStats#GetPlayerAchievements)：
-- `apiname`：成就名标识符（大写蛇形 `SNAKE_CASE` 格式）
-- `achieved`：成就是否已完成（`1` / `0`）
-- `unlocktime`：成就解锁时间（10 位时间戳，若未解锁则为 `0`）
-- `name`：成就名（受 i18n 参数影响 `l=schinese`）
-- `description`：成就描述（受 i18n 参数影响 `l=schinese`）
+- _string_ `apiname`：成就名标识符（大写蛇形 `SNAKE_CASE` 格式）
+- _number_ `achieved`：成就是否已完成（`1` / `0`）
+- _number_ `unlocktime`：成就解锁时间（10 位时间戳，若未解锁则为 `0`）
+- _string_ `name`：成就名（受 i18n 参数影响 `l=schinese`）
+- _string_ `description`：成就描述（受 i18n 参数影响 `l=schinese`）
 
 [AchStats 成就 API](https://www.achievementstats.com/index.php?action=api) `games/<AppID>/achievements/`：
-- `apiName`：成就名标识符（小写蛇形 `snake_case` 格式）
-- `name`：成就名（英文）
-- `description`：成就描述（英文）
-- `added`：成就加入时间（10 位时间戳）
-- `iconLocked`：成就锁定时的图标
-- `iconUnlocked`：成就已解锁的图标
+- _string_ `apiName`：成就名标识符（小写蛇形 `snake_case` 格式）
+- _string_ `name`：成就名（英文）
+- _string_ `description`：成就描述（英文）
+- _string_ `added`：成就加入时间（10 位时间戳）
+- _string_ `iconLocked`：成就锁定时的图标
+- _string_ `iconUnlocked`：成就已解锁的图标
 
 AchStats 成就 API `profiles/<Steam64ID>/achievements/?appIds=[<AppID>,<AppID>]`：
-- `appId`：游戏的 Steam appId（并不是冗余，因为参数支持一次性查询多个游戏，故而需要特别区分）
-- `apiName`：成就名标识符（小写蛇形 `snake_case` 格式）
-- `unlocked`：成就解锁时间（10 位时间戳）
+- _string_ `appId`：游戏的 Steam appId（并不是冗余，因为参数支持一次性查询多个游戏，故而需要特别区分）
+- _string_ `apiName`：成就名标识符（小写蛇形 `snake_case` 格式）
+- _string_ `unlocked`：成就解锁时间（10 位时间戳）
+
+已知：
+- Steam 特有中文的 `成就名` 和 `描述`（缺少中文时会自动 fallback 到英文）
+- AchStats（仅）有英文的 `成就名` 和 `描述`，但特有 `成就加入时间` 和是否已解锁的两种 `成就图标`
+
+那么简单组合一下不就齐活了？我全都要.jpg
+
+> 另，有了成就图标可以~~顺便（？）做一个成就追踪工具~~。

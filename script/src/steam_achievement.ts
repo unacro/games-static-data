@@ -90,12 +90,16 @@ class SteamAchievementManager {
 		return queryResult;
 	}
 
-	async getGameAchievements(gameName: string): Promise<object[]> {
+	async getGameAchievements(
+		gameName: string,
+		dataOrigin = Bun.env.ACHIEVEMENT_DATA_ORIGIN,
+	): Promise<object[]> {
 		const gameInfo = this.getGameInfo(gameName);
 		const gameAppId = gameInfo.appId.toString();
 		let gameAchievements: object[] = [];
-		switch (Bun.env.ACHIEVEMENT_DATA_ORIGIN) {
+		switch (dataOrigin) {
 			case "ach_stats": {
+				console.time("[AchStats API] Query elapsed");
 				const response = await fetch(
 					[
 						`${this.achStatsApi}/games/${gameAppId}/achievements/`,
@@ -107,6 +111,7 @@ class SteamAchievementManager {
 					console.log(await response.text());
 					return [];
 				}
+				console.timeEnd("[AchStats API] Query elapsed");
 				gameAchievements = await response.json();
 				break;
 			}
@@ -131,11 +136,14 @@ class SteamAchievementManager {
 		return gameAchievements;
 	}
 
-	async getPlayerAchievements(gameName: string): Promise<object[]> {
+	async getPlayerAchievements(
+		gameName: string,
+		dataOrigin = Bun.env.ACHIEVEMENT_DATA_ORIGIN,
+	): Promise<object[]> {
 		const gameInfo = this.getGameInfo(gameName);
 		const gameAppId = gameInfo.appId.toString();
 		let playerAchievements: object[] = [];
-		switch (Bun.env.ACHIEVEMENT_DATA_ORIGIN) {
+		switch (dataOrigin) {
 			case "ach_stats": {
 				const updateResponse = await fetch(
 					`${this.achStatsApi}/profiles/${this.steamUserId}/update/?key=${this.achStatsAccessKey}`,
@@ -143,11 +151,11 @@ class SteamAchievementManager {
 				);
 				if (updateResponse.status === 202) {
 					console.log(
-						`[AchStats] Triggered update of profile ${this.steamUserId}`,
+						`[AchStats API] Triggered update of profile ${this.steamUserId}`,
 					);
 				} else {
 					console.warn(
-						`[AchStats] Trigger update of profile ${this.steamUserId} failed`,
+						`[AchStats API] Trigger update of profile ${this.steamUserId} failed`,
 					);
 					console.log(await updateResponse.text());
 				}
@@ -160,7 +168,7 @@ class SteamAchievementManager {
 				);
 				if (response.status !== 200) {
 					console.error(
-						`[AchStats] Query achievements of "${gameName}" failed`,
+						`[AchStats API] Query achievements of "${gameName}" failed`,
 					);
 					console.log(await response.text());
 					return [];
@@ -186,6 +194,7 @@ class SteamAchievementManager {
 				// });
 				// error: This API must be called with a HTTP GET request
 
+				console.time("[Steam Web API] Query elapsed");
 				const response = await fetch(`${ApiUrl}?${requestParams.toString()}`);
 				if (response.status !== 200) {
 					console.error(
@@ -202,10 +211,50 @@ class SteamAchievementManager {
 					return [];
 				}
 				const queryResponse = await response.json();
+				console.timeEnd("[Steam Web API] Query elapsed");
+				console.log(
+					`[Steam Web API] Queried achievement stats of "${gameName}"`,
+				);
 				playerAchievements = queryResponse.playerstats.achievements;
 			}
 		}
 		return playerAchievements;
+	}
+
+	async getAchievements(
+		gameName: string,
+		enableLockStats = false,
+	): Promise<object[]> {
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		const [steamData, achStatsData]: { [key: string]: any }[] =
+			await Promise.all([
+				this.getPlayerAchievements(gameName, "steam"),
+				this.getGameAchievements(gameName, "ach_stats"),
+			]);
+		if (steamData.length === 0 || achStatsData.length === 0) {
+			throw new Error(
+				`The result counts of the two queries are inconsistent: Steam(${steamData.length}), AchStats(${achStatsData.length})`,
+			);
+		}
+		const combinedResult: object[] = [];
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		steamData.map((steamAchievement: { [key: string]: any }, index: number) => {
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			const achievement: { [key: string]: any } = {
+				Name: steamAchievement.name,
+				Description: steamAchievement.description,
+				IconLocked: achStatsData[index].iconLocked,
+				IconUnlocked: achStatsData[index].iconUnlocked,
+				ApiName: steamAchievement.apiname,
+				AddTime: Number(achStatsData[index].added),
+			};
+			if (enableLockStats) {
+				achievement.Achieved = steamAchievement.achieved === 1;
+				achievement.UnlockTime = steamAchievement.unlocktime;
+			}
+			combinedResult.push(achievement);
+		});
+		return combinedResult;
 	}
 }
 

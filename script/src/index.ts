@@ -11,7 +11,7 @@ const gamesStaticDatabase = {
 	): Promise<void> {
 		let latestData: object[] = [];
 		if (tableName === "achievements") {
-			latestData = await SAM.getPlayerAchievements(gameName); // Cache Steam Achievements
+			latestData = await SAM.getAchievements(gameName); // Cache Steam Achievements
 		} else {
 			switch (databaseType) {
 				case "notion": {
@@ -39,7 +39,7 @@ const gamesStaticDatabase = {
 	): Promise<void> {
 		let localData: object[] = [];
 		if (tableName === "achievements") {
-			localData = await SAM.getPlayerAchievements(gameName); // Sync Steam Achievements
+			localData = await SAM.getAchievements(gameName); // Sync Steam Achievements
 		} else {
 			localData = localDataManager.loadData(gameName, tableName);
 		}
@@ -67,13 +67,7 @@ const gamesStaticDatabase = {
 		// nocodbClient.test();
 		console.log("测试读取 Steam 成就...");
 		const gameName = "slay-the-spire";
-		// gamesStaticDatabase.download(gameName, "achievements");
-		localDataManager.saveData(
-			await SAM.getGameAchievements(gameName),
-			gameName,
-			"achievements",
-		);
-		// todo steam 有中文，achstats 有图标和加入时间。组合两种方式
+		gamesStaticDatabase.download(gameName, "achievements");
 	},
 };
 
