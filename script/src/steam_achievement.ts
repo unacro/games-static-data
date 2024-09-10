@@ -195,6 +195,8 @@ class SteamAchievementManager {
 				// error: This API must be called with a HTTP GET request
 
 				console.time("[Steam Web API] Query elapsed");
+				console.log(`${ApiUrl}?${requestParams.toString()}`);
+
 				const response = await fetch(`${ApiUrl}?${requestParams.toString()}`);
 				if (response.status !== 200) {
 					console.error(
