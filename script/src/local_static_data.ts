@@ -68,7 +68,7 @@ class LocalStaticDataManager {
 			fs.writeFileSync(
 				// @ts-ignore
 				this.constructor.getFilePath(gameName, tableName, fileExtension),
-				JSON.stringify(gameData),
+				JSON.stringify(gameData, null, "\t"),
 			);
 			console.log(
 				`Saved "${gameName}" data to "${tableName}.${fileExtension}"`,
