@@ -5,13 +5,13 @@ import utils from "./utils";
 class LocalStaticDataManager {
 	static getFilePath(
 		gameName: string,
-		gameProperty: string,
+		tableName: string,
 		fileExtension = "json",
 	): string {
 		return path.join(
 			path.join(__dirname, "..", "..", "data", "games"), // script path: ./script/src/
-			utils.formatTitle(gameName),
-			`${utils.formatTitle(gameProperty)}.${fileExtension}`,
+			utils.dehumanize(gameName),
+			`${utils.dehumanize(tableName)}.${fileExtension}`,
 		);
 	}
 
@@ -19,16 +19,16 @@ class LocalStaticDataManager {
 
 	loadData(
 		gameName: string,
-		gameProperty: string,
+		tableName: string,
 		fileExtension = "json",
 	): object[] {
 		// @ts-ignore
 		const filePath = this.constructor.getFilePath(
 			gameName,
-			gameProperty,
+			tableName,
 			fileExtension,
 		);
-		console.log(`loading data from "${filePath}"`);
+		console.log(`Loading "${gameName}" data from "${filePath}"...`);
 		let gameData = undefined;
 		try {
 			const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -38,13 +38,11 @@ class LocalStaticDataManager {
 						.replaceAll("\r", "")
 						.split("\n")
 						.filter((row) => row !== "")
-						.map((row) => {
-							return row.split(",");
-						});
+						.map((row) => row.split(","));
 					const csvTableheader = csvTable.shift() as string[];
-					gameData = csvTable.map((row) => {
-						return utils.zipDictionary(csvTableheader, row);
-					});
+					gameData = csvTable.map((row) =>
+						utils.zipDictionary(csvTableheader, row),
+					);
 					break;
 				}
 
@@ -63,17 +61,17 @@ class LocalStaticDataManager {
 	saveData(
 		gameData: object,
 		gameName: string,
-		gameProperty: string,
+		tableName: string,
 		fileExtension = "json",
 	): boolean {
 		try {
 			fs.writeFileSync(
 				// @ts-ignore
-				this.constructor.getFilePath(gameName, gameProperty, fileExtension),
+				this.constructor.getFilePath(gameName, tableName, fileExtension),
 				JSON.stringify(gameData),
 			);
 			console.log(
-				`[${gameName}] Saved game data to "${gameProperty}.${fileExtension}"`,
+				`Saved "${gameName}" data to "${tableName}.${fileExtension}"`,
 			);
 			return true;
 		} catch (err) {
@@ -84,7 +82,7 @@ class LocalStaticDataManager {
 
 	test(): void {
 		const result = this.loadData("Slay The Spire", "cards");
-		// const result = this.loadData("Black Myth: Wukong", "精魄", "csv");
+		// const result = this.loadData("Black Myth: Wukong", "spirits", "csv");
 		// console.log(result);
 		console.table(result);
 		// this.saveData(result, "Slay The Spire", "new-cards");

@@ -1,6 +1,13 @@
 const utils = {
-	formatTitle(rawTitle: string): string {
-		return rawTitle.toLowerCase().replaceAll(" ", "-").replaceAll(":", "");
+	trimRightSlash(rawString: string): string {
+		return rawString.replace(/\/+$/, "");
+	},
+
+	dehumanize(humanizedTitle: string): string {
+		return humanizedTitle
+			.toLowerCase()
+			.replaceAll(/: ?/g, " ")
+			.replaceAll(" ", "-");
 	},
 
 	// combineArray

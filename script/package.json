@@ -2,10 +2,14 @@
   "name": "games-static-database-script",
   "module": "index.ts",
   "type": "module",
+  "bin": {
+    "app": "dist/index.js"
+  },
   "scripts": {
     "dev": "bun run ./src/index.ts",
-    "upload": "NODE_ENV=production ACTION=upload bun run ./src/index.ts",
-    "download": "NODE_ENV=production ACTION=download bun run ./src/index.ts"
+    "app": "NODE_ENV=production ACTION=unused_placeholder bun ./src/index.ts",
+    "download": "NODE_ENV=production bun ./src/index.ts --download",
+    "upload": "NODE_ENV=production bun ./src/index.ts --upload"
   },
   "devDependencies": {
     "@types/bun": "latest"

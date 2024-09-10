@@ -26,10 +26,10 @@ hugo mod get -u
 
 通过 GitHub 直接在线调用 JSON 数据：
 ```
-https://github.com/unacro/games-static-database/raw/main/data/games/buckshot-roulette.json
+https://github.com/unacro/games-static-database/raw/main/data/games/buckshot-roulette/items.json
 ```
 
 通过~~互联网行业顶级大善人之一的~~ jsDelivr 缓存 CDN 调用数据：
 ```
-https://cdn.jsdelivr.net/gh/unacro/games-static-database@main/data/games/buckshot-roulette.json
+https://cdn.jsdelivr.net/gh/unacro/games-static-database@main/data/games/buckshot-roulette/items.json
 ```

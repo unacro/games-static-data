@@ -1,5 +1,0 @@
-name = "Slay The Spire" # 杀戮尖塔
-version = "V2.3.4"
-table_list = [
-  "cards", # 卡牌
-]

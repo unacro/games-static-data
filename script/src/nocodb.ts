@@ -1,3 +1,5 @@
+import utils from "./utils";
+
 /**
  * @descption 由于无法获取长期有效的 Auth Token，因此使用 API Token + 手动指定 tableId 映射
  * @link https://docs.nocodb.com/0.109.7/faqs/#what-is-the-difference-between-auth-token-and-api-token-
@@ -5,24 +7,46 @@
  * @link https://docs.nocodb.com/account-settings/api-tokens/
  */
 // @ts-ignore
-import DatabaseMeta from "./nocodb_meta.toml"; // Bun 原生支持导入 TOML
+import DatabaseMetaInfo from "./nocodb_meta_info.toml"; // Bun 原生支持导入 TOML
 
 class NocodbClient {
-	protected readonly url: string | undefined = Bun.env.NOCODB_URL;
+	protected readonly url: string | undefined = Bun.env.DB_NOCODB_URL;
 	// 私有属性采用 ECMAScript 特性而不是 private 关键字
-	readonly #token: string = Bun.env.NOCODB_TOKEN || "";
+	readonly #token: string = Bun.env.DB_NOCODB_TOKEN || "";
 
 	constructor() {
 		if (!this.url || this.#token === "") {
-			throw new Error("读取环境变量失败");
+			throw new Error("[NocoDB] Read environment variables failed");
 		}
+	}
+
+	getTableId(gameName: string, tableName: string): string {
+		const [targetGameName, targetTableName]: string[] = [
+			gameName,
+			tableName,
+		].map(utils.dehumanize);
+		if (!(targetGameName in DatabaseMetaInfo)) {
+			throw new Error(
+				`[NocoDB] Meta information of "${targetGameName}" not configured yet`,
+			);
+		}
+		const gameMetaInfo = DatabaseMetaInfo[targetGameName];
+		if (
+			!("tableIdMap" in gameMetaInfo) ||
+			!(targetTableName in gameMetaInfo.tableIdMap)
+		) {
+			throw new Error(
+				`[NocoDB] TableId ${targetTableName} of "${targetGameName}" not configured yet`,
+			);
+		}
+		return gameMetaInfo.tableIdMap[targetTableName];
 	}
 
 	async getTableRecords(
 		gameName: string,
 		tableName: string,
 	): Promise<object[]> {
-		const tableId = DatabaseMeta[gameName].tableIdMap[tableName];
+		const tableId = this.getTableId(gameName, tableName);
 		const response = await fetch(
 			`${this.url}/api/v2/tables/${tableId}/records?limit=100&fields=`,
 			{
@@ -30,7 +54,9 @@ class NocodbClient {
 			},
 		);
 		if (response.status !== 200) {
-			console.error(`查询 ${gameName} 的 ${tableName} 表失败`);
+			console.error(
+				`[NocoDB] Query table ${tableName} of "${gameName}" failed`,
+			);
 			return [];
 		}
 		const tableContent = await response.json();
@@ -53,7 +79,7 @@ class NocodbClient {
 		tableName: string,
 		records: object[],
 	): Promise<boolean> {
-		const tableId = DatabaseMeta[gameName].tableIdMap[tableName];
+		const tableId = this.getTableId(gameName, tableName);
 		const currentRecordsResponse = await fetch(
 			`${this.url}/api/v2/tables/${tableId}/records?fields=Id`,
 			{
@@ -61,7 +87,9 @@ class NocodbClient {
 			},
 		);
 		if (currentRecordsResponse.status !== 200) {
-			console.error(`查询 ${gameName} 的 ${tableName} 表失败`);
+			console.error(
+				`[NocoDB] Query table ${tableName} of "${gameName}" failed`,
+			);
 			return false;
 		}
 		const currentRecordsResult = await currentRecordsResponse.json();
@@ -78,7 +106,9 @@ class NocodbClient {
 			},
 		);
 		if (deleteResponse.status !== 200) {
-			console.error(`清空 ${gameName} 的 ${tableName} 表失败`);
+			console.error(
+				`[NocoDB] Clear table ${tableName} of "${gameName}" failed`,
+			);
 			return false;
 		}
 		const updateResponse = await fetch(
@@ -93,15 +123,19 @@ class NocodbClient {
 			},
 		);
 		if (updateResponse.status !== 200) {
-			console.error(`更新 ${gameName} 的 ${tableName} 表失败`);
+			console.error(
+				`[NocoDB] Update table ${tableName} of "${gameName}" failed`,
+			);
 			return false;
 		}
-		console.log(`更新 ${gameName} 的 ${tableName} 表成功`);
+		console.log(
+			`[NocoDB] Updated table ${tableName} of "${gameName}" successfully`,
+		);
 		return true;
 	}
 
 	async test(): Promise<void> {
-		const result = await this.getTableRecords("black-myth-wukong", "精魄");
+		const result = await this.getTableRecords("Slay The Spire", "Cards");
 		console.table(result);
 	}
 }

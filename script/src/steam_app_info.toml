@@ -1,0 +1,67 @@
+[[games]]
+name = "Black Myth: Wukong"
+title = "黑神话：悟空"
+appId = 2358720
+version = "1.0.8.14860"
+table_list = [
+    "Spirits",     # 精魄
+    "Curios",      # 珍玩
+    "Gourds",      # 葫芦
+    "Drinks",      # 酒
+    "Soaks",       # 泡酒物
+    "Formulas",    # 丹方
+    "Ingredients", # 药材
+    "Seeds",       # 种子
+    "Portraits",   # 影神图
+]
+
+[[games]]
+name = "Buckshot Roulette"
+title = "恶魔轮盘"
+appId = 2835570
+version = "V1.2.2"
+table_list = [
+    "items", # 道具
+]
+
+[[games]]
+name = "Cult Of The Lamb"
+title = "咩咩启示录"
+appId = 1313140
+version = "1.4.4" # 不洁之盟
+table_list = [
+    "todo",   # 教徒皮肤
+    "todo",   # 塔罗牌
+    "relics", # 遗物
+    "todo",   # 武器
+    "todo",   # 咒术
+    "todo",   # 教条
+    "todo",   # 毛纺
+]
+
+[[games]]
+name = "Faster Than Light" # 
+title = "超越光速 FTL"
+appId = 212680
+version = "1.6.14"
+table_list = [
+    "weapons", # 武器
+]
+
+[[games]]
+name = "Inscryption"
+title = "邪恶冥刻"
+appId = 1092790
+version = "V1.10"
+table_list = [
+    "cards", # 卡牌
+]
+
+[[games]]
+name = "Slay The Spire"
+title = "杀戮尖塔"
+appId = 646570
+version = "V2.3.4"
+table_list = [
+    "cards", # 卡牌
+]
