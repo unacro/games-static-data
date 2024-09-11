@@ -21,7 +21,7 @@ tableIdMap = { "spirits" = "mw00cqdrwcyhfv7", "curios" = "msb6anebx04qt2e" }
 [slay-the-spire]
 name = "杀戮尖塔"
 baseId = "p1s2eitlyri0xb4"
-tableIdMap = { cards = "mcaapqi9bm7v2sg" }
+tableIdMap = { cards = "mc8u8yfrdjdhky4" }
 
 [faster-than-light]
 name = "超越光速"
