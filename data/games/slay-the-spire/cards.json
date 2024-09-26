@@ -450,16 +450,6 @@
 		"Id": 45
 	},
 	{
-		"Name": "幻影杀手",
-		"Belong": "Green",
-		"Rarity": "Rare",
-		"Type": "Skill",
-		"Cost": 1,
-		"CostUpgraded": 0,
-		"Effect": "在你的下个回合，你所有的攻击伤害翻倍。",
-		"Id": 46
-	},
-	{
 		"Name": "余像",
 		"Belong": "Green",
 		"Rarity": "Rare",

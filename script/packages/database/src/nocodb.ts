@@ -7,7 +7,7 @@ import utils from "./utils";
  * @link https://docs.nocodb.com/account-settings/api-tokens/
  */
 // @ts-ignore
-import DatabaseMetaInfo from "./nocodb_meta_info.toml"; // Bun 原生支持导入 TOML
+import DatabaseMetaInfo from "../config/nocodb_meta_info.toml"; // Bun 原生支持导入 TOML
 
 class NocodbClient {
 	protected readonly url: string | undefined = Bun.env.DB_NOCODB_URL;

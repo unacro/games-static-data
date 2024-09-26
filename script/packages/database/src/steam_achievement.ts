@@ -1,7 +1,7 @@
 import utils from "./utils";
 
 // @ts-ignore
-import SteamAppInfo from "./steam_app_info.toml";
+import SteamAppInfo from "../config/steam_app_info.toml";
 
 class SteamAchievementManager {
 	#steamWebApi = "";
@@ -256,6 +256,10 @@ class SteamAchievementManager {
 			}
 			combinedResult.push(achievement);
 		});
+		const gameInfo = this.getGameInfo(gameName);
+		console.log(
+			`See Steam achievements page: https://steamcommunity.com/stats/${gameInfo.appId}/achievements/`,
+		);
 		return combinedResult;
 	}
 }

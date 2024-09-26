@@ -1,4 +1,4 @@
-import { localDataManager } from "./local_static_data";
+import { localDataManager } from "./local_file";
 import { steamAchievementManager as SAM } from "./steam_achievement";
 import { nocodbClient } from "./nocodb";
 import { notionClient } from "./notion";

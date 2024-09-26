@@ -7,9 +7,10 @@ class LocalStaticDataManager {
 		gameName: string,
 		tableName: string,
 		fileExtension = "json",
+		rootPath = path.join(__dirname, ...Array(4).fill(".."), "data", "games"),
 	): string {
 		return path.join(
-			path.join(__dirname, "..", "..", "data", "games"), // script path: ./script/src/
+			rootPath, // script path: ./script/packages/database/src/
 			utils.dehumanize(gameName),
 			`${utils.dehumanize(tableName)}.${fileExtension}`,
 		);
@@ -28,7 +29,9 @@ class LocalStaticDataManager {
 			tableName,
 			fileExtension,
 		);
-		console.log(`Loading "${gameName}" data from "${filePath}"...`);
+		console.log(
+			`[Local File] Loading "${gameName}" data from "${filePath}"...`,
+		);
 		let gameData = undefined;
 		try {
 			const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -53,7 +56,7 @@ class LocalStaticDataManager {
 				}
 			}
 		} catch (err) {
-			console.error("Error reading file:", err);
+			console.error("[Local File] Error reading file:", err);
 		}
 		return typeof gameData === "object" && gameData !== null ? gameData : {};
 	}
@@ -64,18 +67,21 @@ class LocalStaticDataManager {
 		tableName: string,
 		fileExtension = "json",
 	): boolean {
+		// @ts-ignore
+		const filePath = this.constructor.getFilePath(
+			gameName,
+			tableName,
+			fileExtension,
+		);
+		if (!fs.existsSync(path.dirname(filePath))) {
+			fs.mkdirSync(path.dirname(filePath), { recursive: true });
+		}
 		try {
-			fs.writeFileSync(
-				// @ts-ignore
-				this.constructor.getFilePath(gameName, tableName, fileExtension),
-				JSON.stringify(gameData, null, "\t"),
-			);
-			console.log(
-				`Saved "${gameName}" data to "${tableName}.${fileExtension}"`,
-			);
+			fs.writeFileSync(filePath, JSON.stringify(gameData, null, "\t"));
+			console.log(`[Local File] Saved "${gameName}" data to "${filePath}"`);
 			return true;
 		} catch (err) {
-			console.error("Error writing file:", err);
+			console.error("[Local File] Error writing file:", err);
 			return false;
 		}
 	}

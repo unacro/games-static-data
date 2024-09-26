@@ -1,18 +1,13 @@
 {
-	"name": "games-static-database-script",
-	"module": "index.ts",
-	"type": "module",
-	"bin": {
-		"app": "dist/index.js"
-	},
+	"name": "games-static-data-script",
+	"version": "1.0.0",
+	"workspaces": ["packages/*"],
 	"scripts": {
-		"dev": "bun run ./src/index.ts",
-		"app": "NODE_ENV=production ACTION=unused_placeholder bun ./src/index.ts",
-		"download": "NODE_ENV=production bun ./src/index.ts --download",
-		"upload": "NODE_ENV=production bun ./src/index.ts --upload",
-		"sync": "NODE_ENV=production bun ./src/index.ts --sync-achievement"
+		"dev": "bun --filter '*' dev",
+		"app": "bun --filter '@games-static-data/database' app"
 	},
 	"devDependencies": {
+		"@games-static-data/database": "workspace:*",
 		"@types/bun": "latest"
 	},
 	"peerDependencies": {
