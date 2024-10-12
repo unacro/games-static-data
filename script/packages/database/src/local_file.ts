@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import utils from "./utils";
+import utils from "utils";
 
 class LocalStaticDataManager {
 	static getFilePath(

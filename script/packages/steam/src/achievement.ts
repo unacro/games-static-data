@@ -1,4 +1,4 @@
-import utils from "./utils";
+import utils from "utils/src";
 
 // @ts-ignore
 import SteamAppInfo from "../config/steam_app_info.toml";

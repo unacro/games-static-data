@@ -1,23 +1,20 @@
 {
-	"name": "database",
-	"version": "0.3.0",
+	"name": "steam",
+	"version": "0.1.0",
 	"module": "src/index.ts",
 	"type": "module",
-	"bin": {
-		"app": "dist/index.js"
-	},
 	"scripts": {
 		"dev": "bun run ./src/index.ts",
-		"app": "NODE_ENV=production ACTION=unused_placeholder bun ./src/index.ts",
 		"download": "NODE_ENV=production bun ./src/index.ts --download",
 		"upload": "NODE_ENV=production bun ./src/index.ts --upload",
 		"sync": "NODE_ENV=production bun ./src/index.ts --sync-achievement"
 	},
-	"dependencies": {
-		"utils": "workspace:*"
-	},
 	"devDependencies": {
 		"@types/bun": "latest"
+	},
+	"dependencies": {
+		"utils": "workspace:*",
+		"database": "workspace:*"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"

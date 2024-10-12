@@ -1,4 +1,4 @@
-# Games Static Database
+# Games Static Data
 
 ## Usage
 

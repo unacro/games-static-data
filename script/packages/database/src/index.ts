@@ -1,5 +1,4 @@
 import { localDataManager } from "./local_file";
-import { steamAchievementManager as SAM } from "./steam_achievement";
 import { nocodbClient } from "./nocodb";
 import { notionClient } from "./notion";
 
@@ -70,6 +69,8 @@ const gamesStaticDatabase = {
 		gamesStaticDatabase.download(gameName, "achievements");
 	},
 };
+
+export default gamesStaticDatabase;
 
 function main(debug = false): void {
 	if (debug) {

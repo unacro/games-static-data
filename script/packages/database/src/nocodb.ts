@@ -1,4 +1,4 @@
-import utils from "./utils";
+import utils from "utils";
 
 /**
  * @descption 由于无法获取长期有效的 Auth Token，因此使用 API Token + 手动指定 tableId 映射

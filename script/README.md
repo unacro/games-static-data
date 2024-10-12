@@ -65,3 +65,11 @@ AchStats 成就 API `profiles/<Steam64ID>/achievements/?appIds=[<AppID>,<AppID>]
 那么简单组合一下不就齐活了？我全都要.jpg
 
 > 另，有了成就图标可以~~顺便（？）做一个成就追踪工具~~。
+
+## 数据来源
+
+### 黑神话：悟空
+
+影神图：
+- [妖怪平生录](https://github.com/meethigher/black-wukong-youji/)
+- https://github.com/blacktunes/black-myth-wukong-portraits
