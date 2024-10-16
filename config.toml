@@ -1,5 +1,7 @@
 [module]
+private = 'script/'
+
 [module.hugoVersion]
 extended = false
 min = '0.126.0'
-max = '0.135.0'
+max = '0.136.0'
